@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:visibility="gone"
+        android:id="@+id/netvedio_Internet"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="没有网络"
+            android:textColor="#88000000"
+            android:textSize="25sp"
+            android:gravity="center"
+            android:layout_centerInParent="true"
+            android:drawableTop="@drawable/no_net"
+            />
+    </RelativeLayout>
+    <WebView
+        android:id="@+id/netvedio_webView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"></WebView>
+    <include layout="@layout/netvedio_tapbar"/>
+</LinearLayout>

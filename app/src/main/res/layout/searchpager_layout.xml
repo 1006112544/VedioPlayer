@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/bg"
+        tools:context="com.daobao.asus.vedioplayer.activity.MainActivity">
+
+    <!--标题栏-->
+    <include layout="@layout/search_titlebar"/>
+    <!--FrameLayout-->
+    <ListView
+        android:id="@+id/search_listView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+    </ListView>
+    <TextView
+        android:id="@+id/search_textview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="没有匹配音乐/视频"
+        android:gravity="center"
+        android:textSize="25sp"
+        android:visibility="gone"
+        />
+</LinearLayout>

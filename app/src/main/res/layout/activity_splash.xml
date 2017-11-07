@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/splash_bg"
+        android:scaleType="centerCrop"/>
+        />
+    <ImageView
+        android:id="@+id/splash_logo"
+        android:layout_width="160dp"
+        android:layout_height="160dp"
+        android:src="@drawable/splash_logo"
+        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true" />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_below="@+id/splash_logo"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/linearLayout">
+        <ProgressBar
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+        <TextView
+            android:layout_marginLeft="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:text="加载中..."/>
+    </LinearLayout>
+
+</RelativeLayout>
