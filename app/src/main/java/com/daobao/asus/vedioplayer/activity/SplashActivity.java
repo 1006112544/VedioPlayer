@@ -14,19 +14,27 @@ import android.view.MotionEvent;
 
 import com.daobao.asus.vedioplayer.R;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 
 public class SplashActivity extends Activity {
     private boolean hadPower = false;
+    private Timer timer;
+    private  TimerTask task;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        requestPermission();
-        new Handler().postDelayed(new Runnable() {
+        timer = new Timer();
+        task = new TimerTask() {
+            @Override
             public void run() {
                 setMainActivity();
             }
-        },2000);
+        };
+        timer.schedule(task,2000);
+        requestPermission();
     }
     boolean startMainActivity = false;
     private void setMainActivity() {
@@ -51,6 +59,7 @@ public class SplashActivity extends Activity {
             int checkCallPhonePermission = ContextCompat.checkSelfPermission
                     (this, Manifest.permission.CALL_PHONE);
             if (checkCallPhonePermission != PackageManager.PERMISSION_GRANTED) {
+                task.cancel();
                 ActivityCompat.requestPermissions(this,
                         new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
             }
@@ -69,9 +78,11 @@ public class SplashActivity extends Activity {
                 if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     //sendHomework();
                     hadPower = true;
+                    setMainActivity();
                 }
                 else {
                     //showToast("fail");
+                    setMainActivity();
                 }
                 break;
             default:

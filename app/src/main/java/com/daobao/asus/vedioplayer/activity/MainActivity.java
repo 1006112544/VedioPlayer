@@ -36,14 +36,12 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private FrameLayout main_content;
     private ArrayList<BasePager> basePagers;
     private boolean hadPower = false;//是否拥有权限
-    private TextView vedio_textView;
-    private ProgressBar vedio_progressBar;
-    private TextView audio_textView;
-    private ProgressBar audio_progressBar;
     private ImageButton search;
     private LinearLayout search_bar;
     private EditText search_edit;
     private LinearLayout titleBar;
+    private VedioPager mVedioPager;
+    private AudioPager mAudioPager;
     private ImageView main_vedio_togglebutton;
     private ImageView main_music_togglebutton;
     private ImageView main_netvedio_togglebutton;
@@ -59,9 +57,10 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         agentApplication = new AgentApplication();
         agentApplication.addActivity(this);
         basePagers = new ArrayList<>();
-        basePagers.add(new VedioPager(this));//添加本地视频页面-0
-        basePagers.add(new AudioPager(this));//添加本地视频页面-1
-        //接收SplashActivity传过来的参数
+        mVedioPager = new VedioPager(this);
+        mAudioPager = new AudioPager(this);
+        basePagers.add(mVedioPager);//添加本地视频页面-0
+        basePagers.add(mAudioPager);//添加本地视频页面-1
         Bundle bundle = this.getIntent().getExtras();
         hadPower = bundle.getBoolean("SplashActivity");
         rg_tap.setOnCheckedChangeListener(new MyOnCheckedChangeListener());
@@ -71,12 +70,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     }
     public void init()
     {
-        main_content =(FrameLayout) findViewById(R.id.main_content);
-        rg_tap = (RadioGroup) findViewById(R.id.rg_tap);
-        vedio_textView = findViewById(R.id.vedio_textview);
-        vedio_progressBar = findViewById(R.id.vedio_pb);
-        audio_textView = findViewById(R.id.audio_textview);
-        audio_progressBar = findViewById(R.id.audio_pb);
+        main_content = findViewById(R.id.main_content);
+        rg_tap = findViewById(R.id.rg_tap);
         search = findViewById(R.id.search);
         search_edit = findViewById(R.id.search_edit);
         search_bar = findViewById(R.id.search_bar);
@@ -87,6 +82,8 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         main_vedio_togglebutton = findViewById(R.id. main_vedio_togglebutton);
         main_activity_linearlayout = findViewById(R.id.main_activity_linearlayout);
         search.setOnClickListener(this);
+        //接收SplashActivity传过来的参数
+
     }
     @Override
     public void onClick(View view) {
@@ -151,7 +148,7 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         ft.commit();
     }
     /**
-     * 根据位子的到页面
+     * 根据位子得到页面
      */
     public BasePager getBasePager()
     {
@@ -160,15 +157,6 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
         {
             basePager.initDate();//绑定数据
             basePager.isInitDate = true;
-        }
-        else if(!hadPower)
-        {
-            vedio_progressBar.setVisibility(View.GONE);
-            vedio_textView.setVisibility(View.VISIBLE);
-            vedio_textView.setText("没有权限");
-            audio_progressBar.setVisibility(View.GONE);
-            audio_textView.setVisibility(View.VISIBLE);
-            audio_textView.setText("没有权限");
         }
         return basePager;
     }

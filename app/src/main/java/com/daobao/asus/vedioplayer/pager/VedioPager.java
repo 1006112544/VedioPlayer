@@ -35,6 +35,7 @@ public class VedioPager extends BasePager {
     ListView vedio_listview;
     TextView vedio_textview;
     ProgressBar vedio_pb;
+    private TextView mTextView;
     public static ArrayList<MedioItem> medioItems;
 
     public VedioPager(Context context) {
@@ -43,6 +44,7 @@ public class VedioPager extends BasePager {
 
     public View initView() {
         View view = View.inflate(context, R.layout.vedio, null);
+        mTextView = view.findViewById(R.id.vedio_textview);
         vedio_listview = view.findViewById(R.id.vedio_listview);
         vedio_textview = view.findViewById(R.id.vedio_textview);
         vedio_pb = view.findViewById(R.id.vedio_pb);
@@ -243,4 +245,5 @@ public class VedioPager extends BasePager {
         //参数都设置完成了，创建并显示出来
         builder.create().show();
     }
+
 }

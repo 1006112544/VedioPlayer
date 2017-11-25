@@ -37,8 +37,8 @@ import java.util.Date;
 public class AudioPager extends BasePager{
     ListView audio_listview;
     TextView audio_textview;
-
     ProgressBar audio_pb;
+    private TextView mTextView;
     public static ArrayList<MedioItem> medioItems;
     public AudioPager(Context context)
     {
@@ -48,6 +48,7 @@ public class AudioPager extends BasePager{
         View view = View.inflate(context, R.layout.audio,null);
         audio_listview = view.findViewById(R.id.audio_listview);
         audio_textview = view.findViewById(R.id.audio_textview);
+        mTextView = view.findViewById(R.id.vedio_textview);
         audio_pb= view.findViewById(R.id.audio_pb);
         //设置监听器
         audio_listview.setOnItemClickListener(new MyOnItemClickListener());
